@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 240" role="img" aria-labelledby="title desc">
+  <title id="title">Mahapatra Travels logo</title>
+  <desc id="desc">Modern luxury bus travel logo featuring a stylized coach, road and sunrise with Mahapatra Travels lettering.</desc>
+  <defs>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#37B9FF"/>
+      <stop offset="0.5" stop-color="#0877D9"/>
+      <stop offset="1" stop-color="#06458E"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFE37A"/>
+      <stop offset="0.45" stop-color="#FFB21C"/>
+      <stop offset="1" stop-color="#F26A21"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DDF7FF"/>
+      <stop offset="1" stop-color="#4D9DD8"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-opacity="0.22"/>
+    </filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- Emblem -->
+  <g transform="translate(22 20)" filter="url(#shadow)">
+    <circle cx="100" cy="100" r="88" fill="#071A32" stroke="url(#blue)" stroke-width="6"/>
+    <circle cx="100" cy="100" r="76" fill="#0B2948"/>
+
+    <!-- Sunrise -->
+    <path d="M48 91a52 52 0 0 1 104 0" fill="none" stroke="url(#gold)" stroke-width="13" stroke-linecap="round"/>
+    <path d="M59 79c11-19 29-31 41-31s30 12 41 31" fill="none" stroke="#FFE08A" stroke-width="4" opacity=".75"/>
+
+    <!-- Hills -->
+    <path d="M32 108l31-25 18 16 19-24 42 37 20-13v45H32z" fill="#0D5D54" opacity=".9"/>
+    <path d="M55 99l8-17 8 17zM73 106l9-20 9 20zM121 101l8-18 8 18z" fill="#8DE0B0"/>
+
+    <!-- Road -->
+    <path d="M44 176c23-31 50-43 82-43 24 0 40 5 57 17" fill="none" stroke="#07111F" stroke-width="28" stroke-linecap="round"/>
+    <path d="M44 176c23-31 50-43 82-43 24 0 40 5 57 17" fill="none" stroke="url(#blue)" stroke-width="17" stroke-linecap="round"/>
+    <path d="M70 165c23-18 43-24 63-23" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-dasharray="12 12" opacity=".9"/>
+
+    <!-- Coach -->
+    <g transform="translate(35 91)">
+      <path d="M9 52c0-22 9-38 29-43l49-13c15-4 28 2 35 15l9 18v36H9z" fill="#F7FBFF" stroke="#061C37" stroke-width="5"/>
+      <path d="M25 47V28c0-7 5-12 12-14l46-12c10-3 18 1 23 9l6 11v25z" fill="url(#glass)" stroke="#061C37" stroke-width="4"/>
+      <path d="M31 29l38-20M71 9l28 16M105 16l6 25" stroke="#FFFFFF" stroke-width="3" opacity=".65"/>
+      <path d="M13 50h114v15H13z" fill="url(#blue)"/>
+      <path d="M111 48h14l5 12h-19z" fill="#FFB21C"/>
+      <circle cx="37" cy="66" r="13" fill="#071A32"/>
+      <circle cx="37" cy="66" r="6" fill="#C8E8F5"/>
+      <circle cx="105" cy="66" r="13" fill="#071A32"/>
+      <circle cx="105" cy="66" r="6" fill="#C8E8F5"/>
+      <path d="M18 43h12M115 39h7" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- Brand wordmark -->
+  <g transform="translate(235 53)">
+    <text x="0" y="73" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="800" letter-spacing="3" fill="url(#blue)">MAHAPATRA</text>
+    <path d="M4 91C145 91 270 88 424 69" fill="none" stroke="url(#gold)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M420 69l-19-4 9 14z" fill="#F26A21"/>
+    <text x="8" y="145" font-family="Georgia, 'Times New Roman', serif" font-size="48" font-style="italic" font-weight="600" letter-spacing="1" fill="#F28A24">Travels</text>
+    <text x="190" y="143" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="4" fill="#55718B">COMFORT • CONNECT • JOURNEY</text>
+  </g>
+</svg>
