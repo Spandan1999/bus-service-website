@@ -7,6 +7,9 @@ import Fleet from "./components/sections/Fleet";
 import Timetable from "./components/sections/Timetable";
 import Gallery from "./components/sections/Gallery";
 import Contact from "./components/sections/Contact";
+import Testimonials from "./components/sections/Testimonials";
+import FinalCta from "./components/sections/FinalCta";
+import Footer from "./components/sections/footer";
 export default function App() {
   return (
     <div>
@@ -19,7 +22,10 @@ export default function App() {
         <Fleet />
         <Timetable />
         <Gallery />
+        <Testimonials />
         <Contact />
+        <FinalCta />
+        <Footer />
       </main>
     </div>
   );

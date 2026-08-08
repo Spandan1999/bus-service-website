@@ -146,3 +146,59 @@ export interface ContactContent {
   hoursLabel: LocalizedText;
   ctaLabel: LocalizedText;
 }
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: LocalizedText;
+  message: LocalizedText;
+  rating: number;
+  image?: string;
+  featured?: boolean;
+  enabled: boolean;
+}
+
+export interface TestimonialsContent {
+  enabled: boolean;
+  eyebrow: LocalizedText;
+  title: LocalizedText;
+  description: LocalizedText;
+  testimonials: Testimonial[];
+}
+
+export interface FinalCtaContent {
+  enabled: boolean;
+  eyebrow: LocalizedText;
+  title: LocalizedText;
+  description: LocalizedText;
+  buttonLabel: LocalizedText;
+  buttonHref: string;
+  backgroundImage: string;
+  overlay: string;
+}
+
+export interface FooterContent {
+  enabled: boolean;
+
+  description: LocalizedText;
+
+  copyright: LocalizedText;
+
+  quickLinksTitle: LocalizedText;
+
+  contactTitle: LocalizedText;
+
+  socialTitle: LocalizedText;
+
+  phone: string;
+
+  email: string;
+
+  address: LocalizedText;
+
+  socialLinks: {
+    id: string;
+    label: string;
+    href: string;
+  }[];
+}
