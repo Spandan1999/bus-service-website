@@ -1,15 +1,17 @@
 import {
   motion,
   type HTMLMotionProps,
+  useInView,
 } from "framer-motion";
+
+import { useRef } from "react";
 
 import { useTheme } from "../../theme/ThemeProvider";
 import { createAnimation } from "../../theme/animation";
 
 import type { AnimationPreset } from "../../theme/animationTypes";
 
-interface AnimatedProps
-  extends HTMLMotionProps<"div"> {
+interface AnimatedProps extends HTMLMotionProps<"div"> {
   preset?: AnimationPreset;
   delay?: number;
 }
@@ -20,23 +22,45 @@ export default function Animated({
   delay = 0,
   ...props
 }: AnimatedProps) {
-  const { theme } = useTheme();
+  const {
+    animationsEnabled,
+    animationIntensity,
+  } = useTheme();
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  const isInView = useInView(ref, {
+    once: true,
+    amount: 0.05,
+  });
+
+  /*
+   * If animations are disabled,
+   * content is immediately visible.
+   */
+  if (!animationsEnabled) {
+    return (
+      <motion.div
+        initial={false}
+        {...props}
+      >
+        {children}
+      </motion.div>
+    );
+  }
 
   const variants = createAnimation({
     preset,
-    intensity: theme.animation.intensity,
+    intensity: animationIntensity,
     delay,
   });
 
   return (
     <motion.div
+      ref={ref}
       variants={variants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{
-        once: true,
-        amount: 0.15,
-      }}
+      animate={isInView ? "visible" : "hidden"}
       {...props}
     >
       {children}

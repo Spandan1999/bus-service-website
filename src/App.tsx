@@ -9,24 +9,34 @@ import Gallery from "./components/sections/Gallery";
 import Contact from "./components/sections/Contact";
 import Testimonials from "./components/sections/Testimonials";
 import FinalCta from "./components/sections/FinalCta";
-import Footer from "./components/sections/footer";
+import Footer from "./components/sections/Footer";
+
+import { SiteSettingsProvider } from "./context/SiteSettingsContext";
+import { ThemeProvider } from "./theme/ThemeProvider";
+
 export default function App() {
   return (
-    <div>
-      <Navbar />
-      <main>
-        <Hero />
-        <TrustStats />
-        <About />
-        <Services />
-        <Fleet />
-        <Timetable />
-        <Gallery />
-        <Testimonials />
-        <Contact />
-        <FinalCta />
-        <Footer />
-      </main>
-    </div>
+    <SiteSettingsProvider>
+      <ThemeProvider>
+        <div>
+          <Navbar />
+
+          <main>
+            <Hero />
+            <TrustStats />
+            <About />
+            <Services />
+            <Fleet />
+            <Timetable />
+            <Gallery />
+            <Testimonials />
+            <Contact />
+            <FinalCta />
+          </main>
+
+          <Footer />
+        </div>
+      </ThemeProvider>
+    </SiteSettingsProvider>
   );
 }

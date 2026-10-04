@@ -7,7 +7,7 @@ import { useLanguage } from "../../i18n/LanguageProvider";
 import { getLocalizedText } from "../../i18n/getLocalizedText";
 import { useTheme } from "../../theme/ThemeProvider";
 
-import { finalCtaContent } from "../../data/finalCTA";
+import { finalCtaContent } from "../../data/finalCta";
 
 export default function FinalCta() {
   const { language } = useLanguage();

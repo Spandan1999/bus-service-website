@@ -71,7 +71,7 @@ export function createAnimation(
   };
 
   const hidden = {
-    opacity: 0,
+    opacity: 0
   };
 
   const visible = {

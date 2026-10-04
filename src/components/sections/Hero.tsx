@@ -1,4 +1,5 @@
 import { ArrowRight, Play } from "lucide-react";
+
 import { heroContent } from "../../data/home";
 
 import Animated from "../ui/Animated";
@@ -7,11 +8,18 @@ import Container from "../ui/Container";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { getLocalizedText } from "../../i18n/getLocalizedText";
 import { useTheme } from "../../theme/ThemeProvider";
+import { useSiteSettings } from "../../context/SiteSettingsContext";
 
 export default function Hero() {
   const { theme } = useTheme();
-
   const { language, t } = useLanguage();
+  const { siteSettings } = useSiteSettings();
+
+  const businessName =
+    siteSettings?.businessName ?? "Mahapatra Travels";
+
+  const tagline =
+    siteSettings?.tagline ?? "Every Journey Tells a Story";
 
   const cinematic =
     theme.animation.style === "cinematic";
@@ -27,9 +35,9 @@ export default function Hero() {
         background: theme.colors.background,
       }}
     >
-      {/* =========================================
-          BACKGROUND IMAGE
-      ========================================== */}
+      {/* ================================
+          BACKGROUND
+      ================================= */}
 
       <div className="absolute inset-0">
         <img
@@ -37,8 +45,6 @@ export default function Hero() {
           alt="Luxury bus travelling on the road"
           className="h-full w-full object-cover"
         />
-
-        {/* Theme overlay */}
 
         <div
           className="absolute inset-0"
@@ -48,9 +54,9 @@ export default function Hero() {
         />
       </div>
 
-      {/* =========================================
-          DECORATIVE GRADIENT
-      ========================================== */}
+      {/* ================================
+          THEME GRADIENT
+      ================================= */}
 
       {theme.effects.gradients && (
         <div
@@ -62,16 +68,16 @@ export default function Hero() {
         />
       )}
 
-      {/* =========================================
-          HERO CONTENT
-      ========================================== */}
+      {/* ================================
+          CONTENT
+      ================================= */}
 
       <Container className="relative z-10 pt-32">
         <div className="max-w-5xl">
 
-          {/* =====================================
-              EYEBROW
-          ====================================== */}
+          {/* ==============================
+              EYEBROW / TAGLINE
+          =============================== */}
 
           <Animated
             preset="fadeUp"
@@ -83,16 +89,13 @@ export default function Hero() {
                 color: theme.colors.accent,
               }}
             >
-              {getLocalizedText(
-                heroContent.eyebrow,
-                language
-              )}
+              {tagline}
             </p>
           </Animated>
 
-          {/* =====================================
+          {/* ==============================
               MAIN HEADING
-          ====================================== */}
+          =============================== */}
 
           <Animated
             preset={
@@ -129,9 +132,9 @@ export default function Hero() {
             </h1>
           </Animated>
 
-          {/* =====================================
+          {/* ==============================
               DESCRIPTION
-          ====================================== */}
+          =============================== */}
 
           <Animated
             preset="fadeUp"
@@ -146,9 +149,22 @@ export default function Hero() {
             </p>
           </Animated>
 
-          {/* =====================================
-              CALL TO ACTION BUTTONS
-          ====================================== */}
+          {/* ==============================
+              BUSINESS NAME
+          =============================== */}
+
+          <Animated
+            preset="fadeUp"
+            delay={0.32}
+          >
+            <p className="mt-4 text-sm font-medium text-white/60">
+              {businessName}
+            </p>
+          </Animated>
+
+          {/* ==============================
+              CTA BUTTONS
+          =============================== */}
 
           <Animated
             preset="fadeUp"
@@ -157,7 +173,7 @@ export default function Hero() {
           >
             <div className="flex flex-wrap items-center gap-4">
 
-              {/* Fleet */}
+              {/* Fleet Button */}
 
               <a
                 href="#fleet"
@@ -189,7 +205,7 @@ export default function Hero() {
                 />
               </a>
 
-              {/* Gallery */}
+              {/* Gallery Button */}
 
               <a
                 href="#gallery"
@@ -213,9 +229,9 @@ export default function Hero() {
         </div>
       </Container>
 
-      {/* =========================================
+      {/* ================================
           SCROLL INDICATOR
-      ========================================== */}
+      ================================= */}
 
       <Animated
         preset="fade"
@@ -235,4 +251,3 @@ export default function Hero() {
     </section>
   );
 }
-

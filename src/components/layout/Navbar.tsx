@@ -1,24 +1,23 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
-import { siteIdentity } from "../../data/site";
-
-import {
-  useLanguage,
-} from "../../i18n/LanguageProvider";
-
-import {
-  useTheme,
-} from "../../theme/ThemeProvider";
-
+import { useSiteSettings } from "../../context/SiteSettingsContext";
+import { getStrapiMediaUrl } from "../../services/strapi";
+import { useLanguage } from "../../i18n/LanguageProvider";
+import { useTheme } from "../../theme/ThemeProvider";
 import LanguageSwitcher from "../ui/LanguageSwitcher";
 
 export default function Navbar() {
+  const { siteSettings } = useSiteSettings();
   const { theme } = useTheme();
-
   const { t } = useLanguage();
-
   const [open, setOpen] = useState(false);
+
+  const businessName =
+    siteSettings?.businessName ?? "Mahapatra Travels";
+
+  const logoUrl = siteSettings?.logo?.url
+    ? getStrapiMediaUrl(siteSettings.logo.url)
+    : "";
 
   const links = [
     {
@@ -89,32 +88,30 @@ export default function Navbar() {
             href="#"
             className="flex items-center gap-3"
           >
-            {siteIdentity.logo ? (
+            {logoUrl ? (
               <img
-                src={siteIdentity.logo}
-                alt={siteIdentity.businessName}
+                src={logoUrl}
+                alt={
+                  siteSettings?.logo?.alternativeText ??
+                  businessName
+                }
                 className="h-10 w-auto max-w-[150px] object-contain"
               />
             ) : (
               <div
                 className="flex h-10 w-10 items-center justify-center font-black"
                 style={{
-                  background:
-                    theme.colors.accent,
-
-                  color:
-                    theme.colors.background,
-
-                  borderRadius:
-                    theme.radius.small,
+                  background: theme.colors.accent,
+                  color: theme.colors.background,
+                  borderRadius: theme.radius.small,
                 }}
               >
-                {siteIdentity.shortName.charAt(0)}
+                {businessName.charAt(0)}
               </div>
             )}
 
             <span className="hidden text-lg font-bold tracking-tight sm:block">
-              {siteIdentity.businessName}
+              {businessName}
             </span>
           </a>
 
@@ -156,14 +153,9 @@ export default function Navbar() {
           <div
             className="mt-2 p-5 md:hidden"
             style={{
-              background:
-                theme.colors.surface,
-
-              border:
-                `1px solid ${theme.colors.border}`,
-
-              borderRadius:
-                theme.radius.medium,
+              background: theme.colors.surface,
+              border: `1px solid ${theme.colors.border}`,
+              borderRadius: theme.radius.medium,
             }}
           >
             <div className="flex flex-col gap-5">

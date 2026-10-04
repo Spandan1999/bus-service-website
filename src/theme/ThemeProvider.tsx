@@ -1,6 +1,7 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useState,
   type ReactNode,
 } from "react";
@@ -9,49 +10,93 @@ import { themes } from "./themes";
 import type { Theme } from "./types";
 import { getThemeStyles } from "./themeStyles";
 
+import { useSiteSettings } from "../context/SiteSettingsContext";
+
 interface ThemeContextType {
   theme: Theme;
   themeName: string;
   setTheme: (name: string) => void;
   availableThemes: typeof themes;
+
+  animationsEnabled: boolean;
+  animationStyle: Theme["animation"]["style"];
+  animationIntensity: Theme["animation"]["intensity"];
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(
-  undefined
-);
+const ThemeContext = createContext<
+  ThemeContextType | undefined
+>(undefined);
 
 export function ThemeProvider({
   children,
 }: {
   children: ReactNode;
 }) {
+  const { siteSettings } = useSiteSettings();
+
   const [themeName, setThemeName] = useState("standard");
 
-  const theme = themes[themeName] ?? themes.standard;
+  useEffect(() => {
+    const cmsTheme = siteSettings?.activeTheme;
 
-  const setTheme = (name: string) => {
-    if (themes[name]) {
-      setThemeName(name);
+    console.log("🎨 CMS Theme:", cmsTheme);
+    console.log(
+      "🎨 Available Themes:",
+      Object.keys(themes)
+    );
+
+    if (
+      cmsTheme &&
+      Object.prototype.hasOwnProperty.call(themes, cmsTheme)
+    ) {
+      setThemeName(cmsTheme);
     }
-  };
+  }, [siteSettings?.activeTheme]);
 
- return (
-  <ThemeContext.Provider
-    value={{
-      theme,
-      themeName,
-      setTheme,
-      availableThemes: themes,
-    }}
-  >
-    <div
-      style={getThemeStyles(theme)}
-      className="min-h-screen"
+  const theme =
+    themes[themeName] ?? themes.standard;
+
+  const animationsEnabled =
+    siteSettings?.animationsEnabled ?? true;
+
+  const animationStyle =
+    (siteSettings?.animationStyle as Theme["animation"]["style"]) ??
+    theme.animation.style;
+
+  const animationIntensity =
+    (siteSettings?.animationIntensity as Theme["animation"]["intensity"]) ??
+    theme.animation.intensity;
+
+  return (
+    <ThemeContext.Provider
+      value={{
+        theme,
+        themeName,
+        setTheme: (name: string) => {
+          if (
+            Object.prototype.hasOwnProperty.call(
+              themes,
+              name
+            )
+          ) {
+            setThemeName(name);
+          }
+        },
+        availableThemes: themes,
+
+        animationsEnabled,
+        animationStyle,
+        animationIntensity,
+      }}
     >
-      {children}
-    </div>
-  </ThemeContext.Provider>
-);
+      <div
+        style={getThemeStyles(theme)}
+        className="min-h-screen"
+      >
+        {children}
+      </div>
+    </ThemeContext.Provider>
+  );
 }
 
 export function useTheme() {
