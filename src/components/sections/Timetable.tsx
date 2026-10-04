@@ -144,7 +144,7 @@ export default function Timetable() {
             {/* ROUTES */}
 
             {routes.map(
-              (route, index) => (
+              (route) => (
                 <div
                   key={route.id}
                   className="group border-b px-5 py-6 last:border-b-0 md:grid md:grid-cols-[1.7fr_1fr_1fr_1fr_1fr] md:items-center md:gap-6 md:px-6 lg:px-8"

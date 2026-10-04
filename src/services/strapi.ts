@@ -3,7 +3,7 @@ import type {
   StrapiSiteSettings,
 } from "../types/strapi";
 import type {
-  StrapiHomepage,
+  // StrapiHomepage,
   StrapiHomepageResponse,
 } from "../types/homepage";
 const STRAPI_URL =
